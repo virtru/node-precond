@@ -3,12 +3,20 @@
   "description": "Precondition checking utilities.",
   "version": "0.2.4",
   "author": "Mathieu Turcotte <turcotte.mat@gmail.com>",
-  "keywords": ["precondition", "assert", "invariant", "contract", "condition"],
+  "keywords": [
+    "precondition",
+    "assert",
+    "invariant",
+    "contract",
+    "condition"
+  ],
   "repo": "nzack/node-precond",
   "scripts": [
     "index.js",
     "lib/checks.js",
-    "lib/errors.js"
+    "lib/errors.js",
+    "lib/inherits.js",
+    "lib/sprintf.js"
   ],
   "testScripts": [
     "tests/precond_test.js"
