@@ -13,7 +13,7 @@
         "jshint": "2.5"
     },
     "scripts": {
-        "pretest": "node_modules/.bin/jshint lib/ examples/ index.js",
+        "pretest": "node_modules/.bin/jshint lib/checks.js lib/errors.js lib/inherits.js examples/ index.js",
         "test": "node_modules/.bin/nodeunit tests/"
     },
     "engines": {
