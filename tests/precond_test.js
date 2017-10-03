@@ -65,6 +65,21 @@ exports["Precond"] = {
         test.done();
     },
 
+    "checkIsStringNotEmpty": function(test) {
+        test.throws(function() {
+          precond.checkIsStringNotEmpty('');
+        }, /Expected value to not be empty./);
+        test.throws(function() { precond.checkIsStringNotEmpty(new String('')); });
+        test.throws(function() {
+            precond.checkIsStringNotEmpty({}, 'abc %s def %s', 1, 3);
+        }, /abc 1 def 3/);
+        test.throws(function() {
+            precond.checkIsStringNotEmpty({});
+        }, /Expected "string" but got "object"./);
+        test.equals('foo', precond.checkIsStringNotEmpty('foo'));
+        test.done();
+    },
+
     "checkIsArray": function(test) {
         test.doesNotThrow(function() { precond.checkIsArray([]); });
         test.throws(function() {
@@ -75,6 +90,21 @@ exports["Precond"] = {
         }, /Expected "array" but got "object"./);
         var arr = [1, 2];
         test.equals(arr, precond.checkIsArray(arr));
+        test.done();
+    },
+
+    "checkIsArrayNotEmpty": function(test) {
+        test.throws(function() {
+          precond.checkIsArrayNotEmpty([]);
+        }, /Expected value to not be empty./);
+        test.throws(function() {
+            precond.checkIsArrayNotEmpty({}, 'abc %s def %s', 1, 3);
+        }, /abc 1 def 3/);
+        test.throws(function() {
+            precond.checkIsArrayNotEmpty({});
+        }, /Expected "array" but got "object"./);
+        var arr = [1, 2];
+        test.equals(arr, precond.checkIsArrayNotEmpty(arr));
         test.done();
     },
 
@@ -129,6 +159,24 @@ exports["Precond"] = {
         }, /Expected "object" but got "null"./);
         var obj = {};
         test.equals(obj, precond.checkIsObject(obj));
+        test.done();
+    },
+
+    "checkIsObjectNotEmpty": function(test) {
+        test.throws(function() {
+          precond.checkIsObjectNotEmpty({});
+        }, /Expected value to not be empty./);
+        test.throws(function() {
+            precond.checkIsObjectNotEmpty([], 'abc %s def %s', 1, 3);
+        }, /abc 1 def 3/);
+        test.throws(function() {
+            precond.checkIsObjectNotEmpty(null, 'abc %s def %s', 1, 3);
+        }, /abc 1 def 3/);
+        test.throws(function() {
+            precond.checkIsObjectNotEmpty(null);
+        }, /Expected "object" but got "null"./);
+        var obj = { a: 0 };
+        test.equals(obj, precond.checkIsObjectNotEmpty(obj));
         test.done();
     }
 };
